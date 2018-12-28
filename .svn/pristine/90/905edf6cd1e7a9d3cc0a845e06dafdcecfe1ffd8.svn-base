@@ -1,0 +1,56 @@
+<style>
+    #latest_comment_vue ,#comment_list_vue{background:#f0f0f0}
+    #latest_comment_vue .bar,#comment_list_vue .bar{position:fixed;background:#fff;height:7%;z-index:99}
+    #latest_comment_vue .bar td,#comment_list_vue .bar td{text-align:center}
+    #latest_comment_vue .bar td.active,#comment_list_vue .bar td.active{border-bottom:solid 1px red;}
+    #latest_comment_vue .bar img,#comment_list_vue .bar img{width:14%;}
+    #latest_comment_vue .comment_box,#comment_list_vue .comment_box{background:#fff;width:94%;margin-left:3%;margin-bottom:3%}
+    #latest_comment_vue .comment_line_1 td:nth-of-type(1),#comment_list_vue .comment_line_1 td:nth-of-type(1){width:5%;padding:3%}
+    #latest_comment_vue .comment_line_1 td:nth-of-type(2),#comment_list_vue .comment_line_1 td:nth-of-type(2){width:10%}
+    #latest_comment_vue .comment_line_1 td:nth-of-type(3),#comment_list_vue .comment_line_1 td:nth-of-type(3){width:10%;padding-right:4%}
+    #latest_comment_vue .comment_line_1 td:nth-of-type(3) img,#comment_list_vue .comment_line_1 td:nth-of-type(3) img{width:10%;transform:scale(1.2)}
+    #latest_comment_vue .comment_line_1 .head,#comment_list_vue .comment_line_1 .head{width:100%;border-radius:50%}
+    #latest_comment_vue .content,#comment_list_vue .content{padding:0 4% 3%;word-break:break-all}
+    #latest_comment_vue .image,#comment_list_vue .image{padding:0 3% 3%}
+    #latest_comment_vue .image img,#comment_list_vue .image img{width:30%;margin-right:3%;}
+    #latest_comment_vue .time,#comment_list_vue .time{color:#aaa;padding:0 3% 2%}
+    #latest_comment_vue .box_box,#comment_list_vue .box_box{height: 93%;margin-top: 12%;padding-top: 3%;}
+</style>
+<table class="w100 bar">
+    <tr>
+        <td v-for="title in titles" @touchstart="titleClick($index)" class="{{title.active?'active':''}}">{{title.count}}<br/>
+            <img v-for="i in [0,1,2,3,4]" :src="(i<$parent.$index)?db.data.oss+'barber/images/start_gray.svg':db.data.oss+'barber/images/start_orange.svg'"/>
+        </td>
+    </tr>
+</table>
+
+<div class="box_box scroll pos_r xxx" v-for="star in [5,4,3,2,1]" :style="((titles[$index].active)?'':'display:none')">
+    <div class="comment_box" v-for="comment in comments[star]">
+        <table class="comment_line_1">
+            <tr>
+                <td>
+                    <img class="head" :src="comment.userAvt" />
+                </td>
+                <td>
+                    <span>{{comment.userName}}</span><br/>
+                    <span>{{comment.userPhone}}</span>
+                </td>
+                <td class="txtr">
+                    <span>&nbsp;</span><br/>
+                    <img v-for="i in [0,1,2,3,4]" :src="(i<$parent.$parent.$index)?db.data.oss+'barber/images/start_gray.svg':db.data.oss+'barber/images/start_orange.svg'"/>
+                    <span>{{5-$parent.$index}}.0分</span>
+                </td>
+            </tr>
+        </table>
+        <div class="content">
+            {{comment.content}}
+        </div>
+        <div class="image" v-if="comment.img.length > 0">
+            <img @click="launcher.look(comment.img.join('|'), opu)" v-for="opu in comment.img" :src="opu">
+        </div>
+        <div class="time w100 txtr">
+            {{comment.create_time}}
+        </div>
+    </div>
+</div>
+

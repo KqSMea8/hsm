@@ -1,0 +1,63 @@
+<style>
+    body{
+        background: #f0f0f0;
+    }
+    #comment_vue{background:#f0f0f0;overflow: scroll;-webkit-overflow-scrolling:touch;}
+    #comment_vue .img_box table{height:76%;}
+    #comment_vue h1{color: #aaa;font-size: 117%;font-weight: 600;}
+    #comment_vue h2{color: #aaa;  font-size: 80%;}
+    #comment_vue .start{width: 12%;margin-left: 2%;margin-right: 2%;}
+</style>
+<div class="scroll" style="height: 100%;">
+<table class="w100 h10" style="background: #fff;margin-bottom: 3%;">
+    <tr>
+        <td class="txtc" style="padding: 2% 0;">
+            <h2>发型师也很辛苦，给他一个中肯的评价吧</h2>
+            <img class="start" v-for="star in stars" @click="starClick($index)" :src="(star.choose)?(db.data.oss+'barber/images/start_orange.svg'):(db.data.oss+'barber/images/start_gray.svg')"/>
+            <h1>{{tip}}</h1>
+        </td>
+    </tr>
+</table>
+<div class="w100" style="background: #fff;
+    margin-bottom: 3%;
+    height: 24%;">
+    <p style="padding:3% 8% 0;"><b>评价</b></p>
+    <textarea v-if="isFirst" style="    height: 66%;
+    width: 84%;
+    margin-left: 8%;
+    border: none;" class="w100" placeholder="发型师的手艺如何，服务如何，门店环境如何。写够9字，才是好童鞋~。没写够也是好童鞋 (●ˇ∀ˇ●)" v-model="content"></textarea>
+    <textarea readonly v-if="!isFirst" style="height: 66%;
+    width: 84%;
+    margin-left: 8%;
+    border: none;" class="w100" placeholder="发型师的手艺如何，服务如何，门店环境如何。写够9字，才是好童鞋~。没写够也是好童鞋 (●ˇ∀ˇ●)" v-model="content"></textarea>
+</div>
+<table class="w100 img_box" style="background: #fff;
+    margin-bottom: 3%;
+    height: auto">
+    <tr>
+        <td id="td" class="txtc" style="padding: 3% 0%;">
+            <img v-for="i in [0,1,2]" style="width:32.5%" class="{{imgArr[$index]?'':'disn'}}" @touchstart="upload($event,$index);" :src="imgArr[$index]"/>
+            <div @touchstart="upload($event,null);" v-if="isFirst" style="display: inline-block;border: dashed 2px #ddd;margin-top: 4%;margin-left: 4%;border-radius: 14px;width: 80px;">
+                <img style="width: 100%;
+    transform: scale(0.5);" :src="db.data.oss+'barber/images/add.png'"/>
+            </div>
+            <table class="w100 cb">
+                <tr>
+                    <td>
+         <span v-if="isFirst" style="color:orangered;padding: 4%;
+    padding-bottom: 1%;">&nbsp;&nbsp;&nbsp;拍几张照片秀秀吧！~~~ </span>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<button style="width: 90%;margin-left: 5%;margin-top:1%;margin-bottom: 3%;" class="btn btn-success btn-lg {{isFirst?'':'disn'}}" @touchstart="comment()">提交</button>
+<button style="width: 90%;margin-left: 5%;margin-top:1%;margin-bottom: 4%;" class="btn btn-danger btn-lg {{isFirst?'':'disn'}}" @touchstart="late_comment()">下次再评论</button>
+<button style="width: 90%;margin-left: 5%;margin-top:1%;margin-bottom: 4%;" class="btn btn-success btn-lg {{!isFirst?'':'disn'}}" @touchstart="goback()">返回</button>
+<iframe class="disn" id="iframe" name="demoIframe"></iframe>
+<form class="disn" target="demoIframe" id="fff" method="post" enctype="multipart/form-data">
+    <input id="btn" type="submit" value="提交">
+</form>
+<div class="endtouch w100 h100 pos_a t0"></div>
+</div>

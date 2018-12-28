@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<style>
+    .intro_h2{margin: 0;font-size: 100%;margin-bottom: 2%;margin-top: 2%;}
+    .intro_p{margin: 0;padding-left: 5%;color: #555;}
+</style>
+<h2 class="intro_h2"><b>个人介绍：</b></h2>
+<p class="intro_p">打造属于你的完美形象，我在剪约派等你</p>
+<h2 class="intro_h2">证书认证</h2>
+<p class="intro_p">广州肯州美发学院</p>
+<h2 class="intro_h2"><b>工作经历：</b></h2>
+<p class="intro_p">2010.2.12-2013.7.15</p>
+<p class="intro_p">顶尖美容美发连锁店</p>
+<p class="intro_p">首席</p>
+<p class="intro_p">2013.8.20-2016.9.15</p>
+<p class="intro_p">卡顿美容美发连锁店</p>
+<p class="intro_p">首席</p>
+

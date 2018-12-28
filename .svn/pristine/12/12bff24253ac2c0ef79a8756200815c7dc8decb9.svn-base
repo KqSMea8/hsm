@@ -1,0 +1,89 @@
+<style>
+    #mytickets_vue,#orderlist_vue{float:left;background:#efefef;width:100%}
+    .orderlistHeader{background:#fff;float:left;width:100%;height:13.33333vw;position:fixed}
+    .orderlistHeader .item{float:left;width:25%;height:100%;display:flex;justify-content:center;align-items:center;text-align: center}
+    .orderlistHeader .item span{color:#000;line-height:13.33333vw;font-size:4vw}
+    .orderlistHeader .item.on span{border-bottom:2px solid #eb5789}
+    .orderlistList{float:left;height:91%;width:100%;margin-top:15%;overflow:scroll;-webkit-overflow-scrolling:touch;}
+    .orderlistList .item{background:#fff;float:left;width:96vw;margin-left:2vw;padding-left:4.25926vw;padding-right:4.25926vw;margin-top:1.85185vw;}
+    .orderlistList .item header{float:left;width:100%;height:11.85185vw;line-height:11.85185vw}
+    .orderlistList .item header .title{float:left;font-size:4vw}
+    .orderlistList .item header .status{float:right;color:#b57f8f;font-size:3.2vw}
+    .orderlistList .item article{float:left;width:100%;font-size:3.4vw;box-sizing:border-box}
+    .orderlistList .item article .items{line-height:6vw}
+    .orderlistList span.desc{color:#000;line-height:5vw}
+    .orderlistList span.desc._{position:relative;top:-1vw}
+    .orderlistList span.number{font-weight:700;font-size:5.6vw;color:#df0045;padding-left:2.77778vw}
+    .orderlistList span.wait{color:#b57f8f}
+    .orderlistList .item .floatRight{float:right}
+    .orderlistList .item article .date{color:#a1a1a1;float:left;margin-top:1vw}
+    .orderlistList .item footer{float:left;width:100%;height:10.81481vw;line-height:14.81481vw;color:#9f9f9f;font-size:3.6vw}
+    .orderlistList .item footer .btn{width:25.92593vw;float:right;text-align:center}
+    .orderlistList .item footer img{display:inline-block;width:5.55556vw;height:5.55556vw;position:relative;top:1.2vw}
+    #all_notice .main{width: 100%;height: 80%;overflow: scroll;padding: 0 1%;}
+    #all_notice .ticket{margin-bottom: 4%;width: 100%;height: 24%;}
+    #all_notice .ticket img{width:100%}
+    #all_notice .ticket td>div{padding:3% 11%;text-align:center;font-size:13px;display:inline-block}
+    #all_notice .ticket td:nth-of-type(1){width:7%;font-size:45px;color:#fff;text-align:center}
+    #all_notice .ticket td:nth-of-type(2){width:24%;font-size:10px;color:#fff}
+    #all_notice .ticket td:nth-of-type(3){width:15%;text-align:center}
+</style>
+<div class="orderlistHeader">
+    <div class="item {{(obj.choose)?'on':''}}" v-for="obj in orderTitle" @touchstart="orderChoose($index)">
+        <span>{{$key}}</span>
+    </div>
+</div>
+<div class="orderlistList {{obj.choose?'':'disn'}}" v-for="obj in orderTitle">
+    <div class="item" v-for="order in obj.list">
+        <header>
+            <span class="title">
+                {{order.studioName}}
+            </span>
+            <span class="status">{{order.desc}}</span>
+        </header>
+        <article>
+            <div class="items">
+                <span class="desc _">NO：</span><span class="number">{{order.name}}</span>
+            </div>
+            <div class="items">
+                <span class="desc">服务项目：</span><span>{{order.srv}}</span>
+                <div class="float _" v-if="order.state==0">
+                    <span class="desc">等待人数：</span><span class="wait">{{order.wait}}</span>
+                </div>
+            </div>
+            <div class="items">
+                <span class="desc" v-if="order.state==0">等待时间：</span><span class="wait" v-if="order.state==0">{{order.wait}}</span>
+                <div class="floatRight">
+                    <span class="desc">发型师：</span><span class="wait">{{order.barber}}</span>
+                </div>
+            </div>
+            <div class="items">
+                <span class="desc">项目价格：</span><span>￥{{order.cost}}</span>
+            </div>
+            <div class="items" v-if="order.ticket">
+                <span class="desc">优惠券：</span><span>￥{{order.ticket}}</span>
+            </div>
+            <div class="items">
+                <span class="desc">地址：</span><span>{{order.studioPlace}}</span>
+            </div>
+            <!--<div class="items">-->
+            <!--<span class="desc">电话：</span><span>{{order.tel}}</span>-->
+            <!--</div>-->
+            <div class="items">
+            <span class="date">
+                {{order.time}}
+            </span>
+            </div>
+        </article>
+        <footer>
+            <!--<img src="db.data.oss+'barber/images/icon.png'">-->
+            <!--<span>上传减法参考发行</span>-->
+            <!--<div class="btn btn-success" v-if="order.state==4" @click="into_service(order)">进入服务</div>-->
+            <div class="btn btn-default" v-if="$parent.$index==4">叫号中</div>
+            <div class="btn btn-default" v-if="$parent.$index==0" @click="orderClick(order)">取消排队</div>
+            <div class="btn btn-success" v-if="$parent.$index==1 && order.waitPay == 1" @touchstart="checkOrder(order)">付款</div>
+            <!--<div class="btn btn-default" v-if="$parent.$index==2" @touchstart="checkOrder(order)">查看订单</div>-->
+            <div class="btn btn-default" v-if="$parent.$index==2" @touchstart="jump2comment(order)">进入评论</div>
+        </footer>
+    </div>
+</div>

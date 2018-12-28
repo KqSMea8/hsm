@@ -1,0 +1,46 @@
+<style>
+    #deal_list_vue ,#comment_list_vue{background:#f0f0f0}
+    #deal_list_vue .bar,#comment_list_vue .bar{position:fixed;background:#fff;height:7%;z-index:99;font-size: 3vw;}
+    #deal_list_vue .bar td,#comment_list_vue .bar td{text-align:center}
+    #deal_list_vue .bar td.active,#comment_list_vue .bar td.active{border-bottom:solid 1px red;}
+    #deal_list_vue .bar img,#comment_list_vue .bar img{width:14%;}
+    #deal_list_vue .comment_box,#comment_list_vue .comment_box{background:#fff;width:94%;margin-left:3%;margin-bottom:3%;font-size: 4vw;}
+    #deal_list_vue .comment_line_1 td:nth-of-type(1),#comment_list_vue .comment_line_1 td:nth-of-type(1){width:5%;padding:3%}
+    #deal_list_vue .comment_line_1 td:nth-of-type(2),#comment_list_vue .comment_line_1 td:nth-of-type(2){width:10%}
+    #deal_list_vue .comment_line_1 td:nth-of-type(3),#comment_list_vue .comment_line_1 td:nth-of-type(3){width:10%;padding-right:4%}
+    #deal_list_vue .comment_line_1 td:nth-of-type(3) img,#comment_list_vue .comment_line_1 td:nth-of-type(3) img{width:10%;transform:scale(1.2)}
+    #deal_list_vue .comment_line_1 .head,#comment_list_vue .comment_line_1 .head{width:100%;border-radius:50%}
+    #deal_list_vue .content,#comment_list_vue .content{padding:0 4% 3%;word-break:break-all}
+    #deal_list_vue .image,#comment_list_vue .image{padding:0 3% 3%}
+    #deal_list_vue .image img,#comment_list_vue .image img{width:30%;margin-right:3%;}
+    #deal_list_vue .time,#comment_list_vue .time{color:#aaa;padding:0 3% 2%}
+    #deal_list_vue .box_box,#comment_list_vue .box_box{height: 93%;overflow: scroll;margin-top: 12%;padding-top: 3%;}
+    .rechargeFontColor{color: #ff9f05;}
+    .giveFontColor{color: #006600;}
+    .grey{color: #bababa;}
+</style>
+<div class="scroll deal_list pos_r h100" style="font-family: 黑体;">
+    <p style="font-size: 4vw;padding: 2% 5%;margin: 0;color: #777;">
+        消费明细
+    </p>
+    <div class="comment_box" v-for="dealDetail in dealDetailList">
+        <table class="comment_line_1">
+            <tr>
+                <td style="width: 45%;">
+                    <span class="{{dealDetail.deal_type == 1?'rechargeFontColor':''}}{{dealDetail.deal_type == 2?'giveFontColor':''}}">{{dealDetail.deal_type_name}}</span>
+                </td>
+                <td>
+                    <span class="{{dealDetail.deal_type == 1?'rechargeFontColor':''}}{{dealDetail.deal_type == 2?'giveFontColor':''}}">{{dealDetail.operational_character}}{{dealDetail.price}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="grey">{{dealDetail.create_time}}</span>
+                </td>
+                <td>
+                    <span class="grey">余额:{{dealDetail.present_amount}}</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,84 @@
+<style>
+    /*#select_ticket_vue{background:#f0f0f0;padding:4% 4%}*/
+    #select_ticket_vue,#orderlist_vue{float:left;background:#efefef;width:100%}
+    .orderlistHeader{background:#fff;float:left;width:100%;height:13.33333vw;position:fixed}
+    .orderlistHeader .item{float:left;width:25%;height:100%;display:flex;justify-content:center;align-items:center}
+    .orderlistHeader .item span{color:#000;line-height:13.33333vw;font-size:4vw}
+    .orderlistHeader .item.on span{border-bottom:2px solid #eb5789}
+    .orderlistList{float:left;height:91%;width:100%;margin-top:15%;overflow:scroll}
+    .orderlistList .item{background:#fff;float:left;width:96vw;margin-left:2vw;padding-left:4.25926vw;padding-right:4.25926vw;margin-top:1.85185vw;}
+    .orderlistList .item header{float:left;width:100%;height:11.85185vw;line-height:11.85185vw}
+    .orderlistList .item header .title{float:left;font-size:4vw}
+    .orderlistList .item header .status{float:right;color:#b57f8f;font-size:3.2vw}
+    .orderlistList .item article{float:left;width:100%;font-size:3.4vw;box-sizing:border-box}
+    .orderlistList .item article .items{line-height:6vw}
+    .orderlistList span.desc{color:#000;line-height:5vw}
+    .orderlistList span.desc._{position:relative;top:-1vw}
+    .orderlistList span.number{font-weight:700;font-size:5.6vw;color:#df0045;padding-left:2.77778vw}
+    .orderlistList span.wait{color:#b57f8f}
+    .orderlistList .item .floatRight{float:right}
+    .orderlistList .item article .date{color:#a1a1a1;float:left;margin-top:1vw}
+    .orderlistList .item footer{float:left;width:100%;height:10.81481vw;line-height:14.81481vw;color:#9f9f9f;font-size:3.6vw}
+    .orderlistList .item footer .btn{width:25.92593vw;float:right;text-align:center}
+    .orderlistList .item footer img{display:inline-block;width:5.55556vw;height:5.55556vw;position:relative;top:1.2vw}
+    #select_ticket_vue .main{width:100%;height:100%;overflow:scroll}
+    #select_ticket_vue .ticket{margin-bottom:4%;width:100%;height:20%;}
+    #select_ticket_vue .ticket img{width:100%}
+    #select_ticket_vue .ticket td>div{background:#fff;padding:3% 11%;text-align:center;font-size:3vw;display:inline-block}
+    #select_ticket_vue .ticket td:nth-of-type(1){width:7%;font-size:11vw;color:#fff;text-align:center}
+    #select_ticket_vue .ticket td:nth-of-type(2){width:24%;font-size:3vw;color:#fff}
+    #select_ticket_vue .ticket td:nth-of-type(3){width:15%;text-align:center}
+    #select_ticket_vue .orderlistHeader .item{float:left;width:33%;height:100%;display:flex;justify-content:center;align-items:center}
+    #select_ticket_vue .orderlistList{padding:4%;}
+</style>
+<div class="orderlistHeader">
+    <div class="item {{(item.choose)?'on':''}}" v-for="item in ticketTitle" @touchstart="orderChoose($index)">
+        <span>{{item.text+'('+item.num+')'}}</span>
+    </div>
+</div>
+
+<div class="orderlistList {{obj.choose?'':'disn'}}" v-for="obj in ticketTitle">
+    <div v-if="$index === 0" class="pos_r" style="margin-bottom:5%;display: none;">
+        <img class="w100" :src="(db.data.oss)+'barber/images/ticket-invite.jpg'">
+        <div class="pos_a h100 w100 t0" @touchstart="share()">
+            <table class="h100 w100">
+                <tr>
+                    <td style="color: white;
+            width: 68%;
+            padding: 0 2% 0 25%;
+            font-size: 3.3vw;">邀请好友 各得5元 每一个好友（新客户）来剪，可再获得一张5元首单减优惠券
+                    </td>
+                    <td style="    width: 32%;"><span style="    color: white;
+        background: rgb(18,40,81);
+        padding: 5% 0%;
+        width: 60%;
+        margin-left: 20%;
+        text-align: center;
+        font-size: 3vw;">去邀请</span></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <table v-for="ticket in obj.list" class="ticket" :style="'background:'+((ticket.isRed)?'url(https://wx-1253594735.cosgz.myqcloud.com/1253480904/barber/images/bg-coupon.jpg)':'url(https://wx-1253480904.cosgz.myqcloud.com/barber/images/bg-couponGray.jpg)')+';background-size:100% 100%'">
+        <tr @click="ticketChoose(ticket.id)">
+            <td>
+                {{ticket.discount}}
+            </td>
+            <td>
+                <b style="font-size:4vw">￥</b>
+                <span style="color:#ddd;display:inline;" :class="(ticket.from)?'':'disn'">{{(ticket.from)?'(是'+ticket.from+'分享给您的)':''}}</span>
+                <span style="color:#ddd;display:inline;" :class="(ticket.to)?'':'disn'">{{(ticket.to)?'('+ticket.to+'领取了您的分享券)':''}}</span>
+                <br/>
+                使用范围：{{ticket.studio?ticket.studio:'通用'}}&nbsp;&nbsp;详细><br/>
+                有效期至{{ticket.endTime}}
+                {{ticket.isRed?'(剩'+getDaydiff(ticket.endTime)+'天)':''}}
+            </td>
+            <td>
+                <div style="background:none;color:#fff;">
+                    {{ticket.name}}
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>

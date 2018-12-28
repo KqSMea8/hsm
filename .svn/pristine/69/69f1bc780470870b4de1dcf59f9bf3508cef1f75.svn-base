@@ -1,0 +1,5 @@
+<img class="ma pos_a t0 l0 r0 w100" style="bottom:10vh"
+     src="https://wx-1253594735.file.myqcloud.com/studio/26/buy_one_get_twenty_news.png"/>
+<img id="buy" style="bottom:10vh;position: absolute;left: 25%;top: 85%;"
+     src="https://wx-1253594735.file.myqcloud.com/barber/images/buy_button.png" width="50%" @click="buy()"/>
+

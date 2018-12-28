@@ -1,0 +1,209 @@
+<style>
+    #detail_barber_vue{background:#efefef;float:left}
+    #detail_barber_vue .PhotoGallery{float:left;width:100vw;height:auto;overflow:hidden;position:relative}
+    #detail_barber_vue .PhotoScroller{position:absolute;height:100%;left:0}
+    #detail_barber_vue .PhotoScroller img{width:100vw;height:100%}
+    #detail_barber_vue .scrollerIndex{position:absolute;bottom:5vw;width:100%;text-align:center}
+    #detail_barber_vue .scrollerIndex span{display:inline-block;width:2.7vw;height:2.7vw;background:#000;margin-left:1.5vw;margin-right:1.5vw;border-radius:50%}
+    #detail_barber_vue .title{background:#efefef;float:left;position:relative;width:100vw;height:17.5vw;border-bottom:1px solid #ebebeb;border-top:1px solid #ebebeb}
+    #detail_barber_vue .tBox{position:absolute;width:27.77778vw;height:9.62963vw;right:4vw;bottom:3.8vw}
+    #detail_barber_vue .tBox .fans{width:50%;height:100%;background:#d60040;text-align:center;float:left;color:#fff;font-size:3.2vw;line-height:3.51852vw;padding-top:1vw}
+    #detail_barber_vue .tBox .follow{width:50%;height:100%;background:#e60146;text-align:center;float:left;color:#fff;font-size:3.2vw;line-height:3.51852vw;padding-top:1vw}
+    #detail_barber_vue .heart{font-size:3.6vw}
+    #detail_barber_vue .designation{font-size:4.5vw;font-weight:700}
+    #detail_barber_vue .lBox{position:absolute;left:3.33333vw;top:4.5vw}
+    #detail_barber_vue .satisfaction{line-height:5.55556vw;color:#a4a4a4;font-size:3.6vw}
+    #detail_barber_vue .promise{background:#fff;position:relative;float:left;width:100%;height:11.38889vw}
+    #detail_barber_vue .promiseItem{position:relative;float:left;width:23%;line-height:11vw;font-size:3.2vw;color:#9e9e9e;text-align:center}
+    #detail_barber_vue .promiseItem:nth-child(1){margin-left:4%}
+    #detail_barber_vue .promiseItem .circle{position:relative;width:4.81481vw;height:4.81481vw;background:url(${db.data.oss}barber/images/icon-check.png) no-repeat;background-size:100% 100%;display:inline-block;top:1.2vw;margin-right:1vw}
+    #detail_barber_vue .studio{background:#fff;float:left;width:100vw;height:14.81481vw}
+    .cell{position:relative;display:table-cell;vertical-align:middle;height:14.81481vw}
+    #detail_barber_vue .studio .cell-l{top:2vw;width:76vw}
+    #detail_barber_vue .studio .cell-r{top:2vw;width:24vw;text-align:left}
+    #detail_barber_vue .cell-l .icon{width:5.83333vw;height:5.27778vw;display:inline-block;margin:-1vw 0 0 5vw;vertical-align:middle}
+    #detail_barber_vue .cell-r .icon{width:3.98148vw;height:5.27778vw;background:url(${db.data.oss}barber/images/icon-l.png) no-repeat;background-size:100% 100%;display:inline-block;margin:-1vw 0 0 0;vertical-align:middle}
+    #detail_barber_vue .studioName{display:inline-block;font-size:3.8vw;color:#9a9a9a}
+    #detail_barber_vue .studioDistance{display:inline-block;font-size:3.8vw;color:#666}
+    #detail_barber_vue .comment{float:left;margin-top:3vw;background:#fff}
+    #detail_barber_vue .commentTitle{float:left;width:100vw;height:12.77778vw}
+    #detail_barber_vue .commentTitleTxt{float:left;width:33.51852vw;height:12.5vw;line-height:12.5vw;border-bottom:1px solid #e80048;color:#e30048;text-align:center;font-size:4vw;font-weight:700}
+    #detail_barber_vue .impression{float:left;height:24.72222vw;width:100vw}
+    #detail_barber_vue .satisfaction_{font-weight:700;font-size:3.4vw;color:#e30048;display:inline-block;width:17.96296vw;height:17.96296vw;border:1px solid #e30048;border-radius:50%;position:relative;text-align:center;line-height:.8;padding-top:4.2vw}
+    #detail_barber_vue .satisfaction_number{margin-left:.5vw;font-size:7vw}
+    #detail_barber_vue .satisfaction_ i{font-size:100%;padding-bottom:1.5vw;display:inline-block}
+    #detail_barber_vue .impression .cell-l{height:24.72222vw;text-align:right;width:25vw}
+    #detail_barber_vue .impression .cell-r{height:24.72222vw;text-align:left;width:75vw;padding-left:4vw}
+    #detail_barber_vue .impression .cell-r .starBox{line-height:6.11111vw;display:inline-block;font-size:3.2vw;color:#e30048;border:.5vw solid #e30048;border-radius:30vw;padding-left:2.2vw;padding-right:2.2vw;margin-top:1vw;margin-bottom:1vw;font-weight:700}
+    #detail_barber_vue .commentListItem{border-top:1px solid #e7e7e7;border-bottom:1px solid #e7e7e7;float:left;width:100vw}
+    #detail_barber_vue .commentListItem .userInfo{margin:2vw auto 3vw auto;width:89.53704vw;height:13.61111vw}
+    #detail_barber_vue .commentListItem .userInfo .userHead{float:left;height:13.61111vw;width:13.61111vw;border-radius:50%}
+    #detail_barber_vue .commentListItem .userInfo .userInfoBox{float:left;width:37vw;height:100%;margin-left:2.5vw;font-size:3.4vw;padding-top:2vw}
+    #detail_barber_vue .commentListItem .userInfo .nameLine{line-height:6vw}
+    #detail_barber_vue .commentListItem .userInfo .telLine{line-height:6vw;color:#c5c5c5}
+    #detail_barber_vue .commentListItem .userInfo .fa{color:#feb005;font-size:4vw}
+    #detail_barber_vue .commentListItem .userInfo .marks{text-align:right;color:#747474;font-size:3.6vw;margin-top:7vw;margin-left:2.5vw;float:left;width:33vw;}
+    #detail_barber_vue .commentListItem .commentDetail{word-break:break-all;width:97vw;color:#767676;padding-left:5.8vw;line-height:5.5vw;font-size:3.3vw;display:inline-block}
+    #detail_barber_vue .commentListItem .commentDate{color:#c9c9c9;font-size:3.3vw;line-height:9vw;float:right;margin-right:9vw}
+    #detail_barber_vue .checkAll{height:11.66667vw;float:left;width:100vw}
+    #detail_barber_vue .checkAll span{font-size:3.8vw;float:left;width:80%;margin-left:10%;text-align:center;line-height:8.88889vw;margin-top:1.38889vw;color:#a8a8a8;border:1px solid #dfdfdf;border-radius:2vw}
+    #detail_barber_vue .checkAll span:active{background:#eee;color:#fff}
+    #detail_barber_vue .personalInfo{float:left;background:#fff;margin-top:3vw}
+    #detail_barber_vue .personalInfo_{float:left;padding:4vw 4vw 4vw 4vw;font-size:4vw;width:100%}
+    #detail_barber_vue .bottom{color:#646464;float:left;width:100vw;background:#fff;margin-top:3.6vw;font-size:3.3vw}
+    #detail_barber_vue .line{height:38vw}
+    #detail_barber_vue .icon{height:15vw;padding-left:4vw}
+    #detail_barber_vue .iconL{width:5vw;height:6.48148vw}
+    #detail_barber_vue .txtLocation{line-height:4.4vw;width:75.92593vw;height:15vw;padding-left:2vw}
+    #detail_barber_vue .cell.check{color:#9e9e9e;font-size:3.8vw;padding-left:1vw}
+    #detail_barber_vue .iconZ{width:5vw;height:5vw}
+    #detail_barber_vue .line_2 .icon{height:9vw}
+    #detail_barber_vue .txtTime{height:9vw;padding-left:2vw}
+    #detail_barber_vue .iconD{width:5vw;height:5vw}
+    #detail_barber_vue .line_3 .icon{height:9vw}
+    #detail_barber_vue .txtTel{height:9vw;padding-left:2vw}
+    #detail_barber_vue .txtTel span{font-weight:700;font-size:4vw;color:#979797}
+    #detail_barber_vue .yjqh{color:#fff;font-size:4vw;text-align:center;line-height:13.33333vw;background:#e60146;position:fixed;bottom:0;width:100vw}
+    #detail_barber_vue .personalWorks{margin-top:3vw;background:#fff;float:left}
+    #detail_barber_vue .worksTitle{font-size:3.2vw;color:#9a9a9a;width:100vw;padding-left:5vw;line-height:12vw}
+    #detail_barber_vue .showBox img:nth-child(1){margin-left:5vw}
+    #detail_barber_vue .showBox{margin-bottom:4vw;float:left}
+    #detail_barber_vue .showBox img{float:left;margin-right:1.11111vw;width:29.16667vw;height:33.88889vw}
+</style>
+<div class="w100 pos_r" style="overflow:scroll;height:93%;-webkit-overflow-scrolling:touch;">
+    <div class="PhotoGallery">
+        <img class="w100" :src="barber.img">
+    </div>
+    <div class="title">
+        <div class="lBox">
+            <div class="designation">{{barber.name}}</div>
+            <div class="satisfaction"><span>{{barber.waitStr}}</span></div>
+        </div>
+        <div class="tBox">
+            <div class="fans">{{barber.fans}} <br> 粉丝数</div>
+            <div class="follow" @touchstart="subscribeBarber()">
+                <img :src="followImg"><br>{{(barber.subscribed)?'已关注':'关注'}}
+            </div>
+        </div>
+    </div>
+    <div class="studio">
+        <div class="cell cell-l">
+            <div class="icon"></div>
+            <div class="studioName">{{barber.studio.name}}&gt;</div>
+        </div>
+        <div class="cell cell-r" @click="beHere()">
+            <div class="icon"></div>
+            <div class="studioDistance">{{launcher.getDistanceWithLatLon(barber.studio.lat/1000000,barber.studio.lon/1000000,db.data.user.lat,db.data.user.lon)}}&gt;</div>
+        </div>
+    </div>
+    <div class="promise">
+        <div class="promiseItem"><span class="circle"></span> <span>品质保障</span></div>
+        <div class="promiseItem"><span class="circle"></span> <span>减少等待</span></div>
+        <div class="promiseItem"><span class="circle"></span> <span>消费透明</span></div>
+        <div class="promiseItem"><span class="circle"></span> <span>优惠特价</span></div>
+    </div>
+    <div class="comment">
+        <div class="commentTitle">
+            <div class="commentTitleTxt">评论({{barber.comments}})</div>
+        </div>
+        <div class="impression">
+            <div class="cell cell-l">
+                <div class="satisfaction_"><span class="satisfaction_number">{{barber.satisfaction}}</span> <i>%</i><br><span style="margin-top: -16%;position:relative;">满意度</span></div>
+            </div>
+            <div class="cell cell-r">
+                <div class="starBox">五星({{barber.score5}})</div>
+                <div class="starBox">四星({{barber.score4}})</div>
+                <div class="starBox">三星({{barber.score3}})</div>
+                <div class="starBox">二星({{barber.score2}})</div>
+                <div class="starBox">一星({{barber.score1}})</div>
+            </div>
+        </div>
+        <div class="commentListItem" v-for="comment in barber.lastComment">
+            <div class="userInfo"><img :src="comment.userAvt" class="userHead">
+                <div class="userInfoBox">
+                    <div class="nameLine">{{comment.userName}}</div>
+                    <div class="telLine">{{comment.userPhone}}</div>
+                </div>
+                <div class="marks">
+                    <img v-for="i in [0,1,2,3,4]" :src="db.data.oss+'barber/images/start_orange.svg'" style="width:12%;">
+                    {{5.0}}分
+                </div>
+            </div> <span class="commentDetail">{{comment.content}}</span>
+            <div class="image" v-if="comment.img.length > 0">
+                <img style="width: 30%;margin-left: 3%;" @click="launcher.look(comment.img.join('|'), src)" v-for="src in comment.img" :src="src" class="{{src?'':'disn'}}">
+            </div>
+            <div class="commentDate"><span>{{comment.create_time}}</span></div>
+        </div>
+        <div @click="jump('comment_list')" class="checkAll" v-if="(barber.comments > 0)"><span>查看所有{{barber.comments}}条评论</span></div>
+    </div>
+    <div class="personalInfo" style="font-size:2.6vw;">
+        <div class="commentTitle">
+            <div class="commentTitleTxt">个人资料</div>
+        </div>
+        <div class="personalInfo_">
+            {{{barber.introduce}}}
+        </div>
+    </div>
+    <div class="personalWorks">
+        <div class="worksTitle">Ta的作品(3)</div>
+        <div class="showBox">
+            <img @click="launcher.look(barber.opus.join('|'), opu)" v-for="opu in barber.opus" :src="opu" alt="">
+        </div>
+        <div class="bottom">
+            <div class="cell line">
+                <div class="line_1" >
+                    <div class="cell icon" @click="jump('place')"><img :src="db.data.oss+'barber/images/icon-l.png'" class="iconL"></div>
+                    <div class="cell txtLocation" @click="jump('place')"><span class="distance_">{{launcher.getDistanceWithLatLon(barber.studio.lat,barber.studio.lon,db.data.user.lat,db.data.user.lon)}}</span> <br> <span class="address">{{barber.studio.place}}</span></div>
+                    <div class="cell check" @touchstart="beHere()">导航></div>
+                </div>
+                <div class="line_3">
+                    <div class="cell icon"><img :src="db.data.oss+'barber/images/icon-d.png'" class="iconD">
+                    </div>
+                    <div class="cell txtTel">
+                        电话<span>{{barber.studio.phone}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="tip {{(!!tipView === false)? 'disn':''}}">
+    <div class="cover" @click="empty('tipView')"></div>
+    <div class="box">
+        <div class="line_1">
+            温馨提示
+        </div>
+        <div class="line_2">
+            {{tipView}}
+        </div>
+        <div class="line_3" @click="falseVal('tipView')">
+            <span>确定</span>
+        </div>
+    </div>
+</div>
+<div class="bindPhone {{showBindPhoneView? '':'disn'}}">
+    <div class="cover" @click="change('showBindPhoneView')"></div>
+    <div class="box">
+        <div class="line_1">
+            {{(!!db.data.user.phone===false)?'绑定手机号':'更换手机号'}}
+        </div>
+        <div class="line_2">
+            <input placeholder="输入手机号" v-model="phone">
+        </div>
+        <div class="line_3">
+            <input placeholder="输入验证码" v-model="phoneCheck">
+            <span @click="sendPhoneCheck()">{{checkText}}</span>
+        </div>
+        <div class="line_4">
+            <span @click="bindPhone()">确定</span>
+            <span @click="change('showBindPhoneView')">取消</span>
+        </div>
+    </div>
+</div>
+<!--
+<div class="yjqh" @click="launcher.quhao(barber,barber.service,barber.work_state)" :style="((barber.work_state==1)?'':'background: #bbb;')">
+    {{(barber.work_state==1)?'一键取号':((barber.work_state==0)?'已下班':'吃饭中')}}
+</div>-->
+<div class="yjqh" @click="readeyTakeNumber(barber)" :style="((barber.work_state==1)?'':'background: #bbb;')">
+    {{(barber.work_state==1)?'一键取号':((barber.work_state==0)?'已下班':'吃饭中')}}
+</div>

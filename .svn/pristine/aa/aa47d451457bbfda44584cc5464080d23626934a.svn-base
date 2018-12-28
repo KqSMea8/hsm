@@ -1,0 +1,117 @@
+<style>
+
+</style>
+<div class="titleBar">
+    <table>
+        <tr>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+    <div v-for="item in titleBar" @touchstart="titleItemClick($index)">
+        <table class="titleBar_title {{item.status?'red border_bottom_red':'grey'}}">
+            <tr>
+                <td>
+                    {{item.text}}
+                </td>
+            </tr>
+        </table>
+    </div>
+    <table>
+        <tr>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+</div>
+<div class="yueta">
+    <div class="person {{titleBar[0].status?'':'disn'}}">
+        <div class="info_box" v-for="barber in barberList">
+            <table class="line w100 h10" @click="launcher.detail_barber(barber.id)">
+                <tr>
+                    <td class="line1 name w50">
+                        &nbsp;&nbsp;&nbsp;&nbsp;{{barber.name}}
+                        &nbsp;<span class="grey" style="font-size:10px;font-weight: 100;transform: translateY(-3px);">{{!!studio?studio.name:''}}</span></td>
+                    <td style="font-size: 3vw;" class="line1 w50 txtr grey" v-html="barber.waitStr+'&nbsp;&nbsp;&nbsp;&nbsp;'"></td>
+                </tr>
+            </table>
+            <ul class="block" @click="launcher.detail_barber(barber.id)">
+                <img class="w100" :src="(barber.img.length>10)?barber.img:db.data.oss+'barber/images/hello.jpg'" />
+                <div class="distance">
+                    {{launcher.getDistance(barber.distance)}}
+                </div>
+                <table class="fans">
+                    <tr>
+                        <td>
+                            {{barber.fans}}
+                            <br>粉丝数
+                        </td>
+                        <td>
+                            {{barber.satisfaction}}%
+                            <br>满意度
+                        </td>
+                    </tr>
+                </table>
+            </ul>
+            <table class="w100">
+                <tr>
+                    <td class="line1">
+                        &nbsp;&nbsp;
+                        <img class="h50" :src="db.data.oss+'barber/images/pinglun.png'">
+                        <span class="grey" v-html="'&nbsp;&nbsp;评论数&nbsp;&nbsp;'+barber.comments">&nbsp;</span>
+                    </td>
+                    <td class="txtr line1" @click="launcher.detail_barber(barber.id)">
+                        <span class="black" v-html="db.data.services[Math.floor(barber.service)]+'&nbsp;&nbsp;'">&nbsp;</span>
+                        <span class="red" v-html="barber.price+'￥&nbsp;&nbsp;&nbsp;'">&nbsp;</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="store {{titleBar[1].status?'':'disn'}}">
+        <div class="info_box" v-for="studio in studioList">
+            <table class="w100" @click="launcher.detail_studio(studio.id)">
+                <tr>
+                    <td class="line1 name w50" v-html="'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + studio.name"></td>
+                    <td style="font-size:10px;" class="line1 w50 txtr grey">
+                        {{studio.stateStr}}> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </td>
+                </tr>
+            </table>
+            <ul class="block" @click="launcher.detail_studio(studio.id)">
+                <img class="w100" :src="(studio.img.length>10)?studio.img:db.data.oss+'barber/images/hello.jpg'" />
+                <div class="distance">
+                    {{launcher.getDistance(studio.distance)}}
+                </div>
+                <table class="pos_a fans">
+                    <tr>
+                        <td>
+                            {{studio.fans}}
+                            <br>粉丝数
+                        </td>
+                        <td>
+                            {{studio.satisfaction}}%
+                            <br>满意度
+                        </td>
+                    </tr>
+                </table>
+            </ul>
+            <table class="w100">
+                <tr>
+                    <td @click="launcher.showTicketView(studio.discount_id, $index)" class="line1 name w50">
+                        &nbsp;&nbsp;
+                        <img class="h40" :src="db.data.oss+'barber/images/hongbao.png'">
+                        <b class="red">
+                            &nbsp;&nbsp;{{studio.firstDiscountTxt}}
+                        </b>
+                    </td>
+                    <td class="line1 w50 txtr">
+                        <span class="black">{{studio.srv}}</span>
+                        <b class="red">{{studio.price}}￥&nbsp;</b>
+                        <b style="color:#ddd;text-decoration:line-through;">{{studio.original_price}}￥</b>
+                        &nbsp;&nbsp;&nbsp;
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="endtouch w100 h100 pos_a t0"></div>

@@ -1,0 +1,143 @@
+<style>
+    #recharge_vue .titleBar,#mysubscribe_vue .titleBar{height:10%;background:#fff}
+    #recharge_vue .titleBar>div,#mysubscribe_vue .titleBar>div{float:left;height:100%;text-align:center;width:30%}
+    #recharge_vue .titleBar>table,#mysubscribe_vue .titleBar>table{height:100%;width:20%;float:left}
+    #recharge_vue .titleBar>table td,#mysubscribe_vue .titleBar>table td{text-align:center;font-size:3vw;padding:0 4%}
+    #recharge_vue .titleBar_title,#mysubscribe_vue .titleBar_title{height:100%;width:100%}
+    #recharge_vue .titleBar_title span,#mysubscribe_vue .titleBar_title span{font-size:4.5vw;}
+    #recharge_vue .titleBar .glyphicon-chevron-left{transform:rotate(90deg);transition:all .4s ease}
+    #recharge_vue .titleBar .rotate{transform:rotate(-90deg)}
+    #recharge_vue .search{width:36%}
+    #recharge_vue .yueta{height:80%}
+    #mysubscribe_vue .yueta{height:90%}
+    #recharge_vue .yueta .person,#mysubscribe_vue .yueta .person{overflow:scroll;-webkit-overflow-scrolling:touch;width:100%;height:100%;position:relative}
+    #recharge_vue .yueta .store,#mysubscribe_vue .yueta .store{overflow:scroll;-webkit-overflow-scrolling:touch;width:100%;height:100%;position:relative}
+    #recharge_vue .footBar{width:100%;background:#fff;height:10%}
+    .red{color:red}
+    .grey{color:#777}
+    .border_bottom_red{border-bottom:solid 2px red}
+    #recharge_vue .info_box,#mysubscribe_vue .info_box{margin:3%;background:#fff}
+    #recharge_vue .info_box>div,#mysubscribe_vue .info_box>div{background:#fff}
+    #recharge_vue .info_box .line1,#mysubscribe_vue .info_box .line1{padding:3% 0;font-size:4vw}
+    #recharge_vue .info_box .name,#mysubscribe_vue .info_box .name{font-weight:900;font-size: 4vw;}
+    #recharge_vue .info_box .studio,#mysubscribe_vue .info_box .studio{width:19%;color:#aaa}
+    #recharge_vue .info_box .waitting,#mysubscribe_vue .info_box .waitting{text-align:right}
+    #recharge_vue .footBar>div{width:50%;float:left;height:100%;text-align:center}
+    #recharge_vue .footBar>div>div{height:60%}
+    #recharge_vue .footBar img{height:80%;top:20%;position:relative}
+    #recharge_vue .info_box ul,#mysubscribe_vue .info_box ul{position:relative;width:100%;background:#fff}
+    #recharge_vue .info_box li,#mysubscribe_vue .info_box li{float:left}
+    #recharge_vue .info_box ul.block,#mysubscribe_vue .info_box ul.block{height:auto}
+    #recharge_vue .info_box ul:nth-of-type(1) li,#mysubscribe_vue .info_box ul:nth-of-type(1) li{width:50%;height:100%}
+    #recharge_vue .info_box ul:nth-of-type(1) li:nth-of-type(2),#mysubscribe_vue .info_box ul:nth-of-type(1) li:nth-of-type(2){text-align:right}
+    #recharge_vue .info_box ul:nth-of-type(1) span,#mysubscribe_vue .info_box ul:nth-of-type(1) span{font-size:17px}
+    #recharge_vue .info_box ul:nth-of-type(1) span.name,#mysubscribe_vue .info_box ul:nth-of-type(1) span.name{font-size:18px;font-weight:900}
+    #recharge_vue .info_box ul:nth-of-type(3) li,#mysubscribe_vue .info_box ul:nth-of-type(3) li{width:50%;height:100%}
+    #recharge_vue .info_box ul:nth-of-type(3) li:nth-of-type(2),#mysubscribe_vue .info_box ul:nth-of-type(3) li:nth-of-type(2){text-align:right}
+    #recharge_vue .info_box ul:nth-of-type(3) img,#recharge_vue .info_box ul:nth-of-type(4) img,#mysubscribe_vue .info_box ul:nth-of-type(3) img{height:38%;top:28%;position:relative}
+    #recharge_vue .info_box ul:nth-of-type(3) span,#mysubscribe_vue .info_box ul:nth-of-type(3) span{font-size:16px}
+    #recharge_vue .info_box ul:nth-of-type(4) li,#mysubscribe_vue .info_box ul:nth-of-type(4) li{width:50%;height:100%}
+    #recharge_vue .info_box ul:nth-of-type(4) li:nth-of-type(2),#mysubscribe_vue .info_box ul:nth-of-type(4) li:nth-of-type(2){text-align:right}
+    #recharge_vue .info_box ul:nth-of-type(4) span,#mysubscribe_vue .info_box ul:nth-of-type(4) span{font-size:16px}
+    .pink{color:pink}
+    .borderRed{border:1px solid red}
+    .borderPink{border:1px solid pink}
+    #recharge_vue .info_box .yijian,#mysubscribe_vue .info_box .yijian{border-radius: 53px;width: 58%;display: inline-block;text-align: center;position: relative;padding: 6% 2%;font-size: 3vw;margin-right: 10%;}
+    #recharge_vue .info_box .fans,#mysubscribe_vue .info_box .fans{bottom:4%;left:51%;width:46%;position:absolute;font-size: 3vw;}
+    #recharge_vue .info_box .fans td,#mysubscribe_vue .info_box .fans td{padding:2% 0;text-align:center;line-height:1.1;color:#fff}
+    #recharge_vue .info_box .fans td:nth-of-type(1),#mysubscribe_vue .info_box .fans td:nth-of-type(1){background:#D60040}
+    #recharge_vue .info_box .fans td:nth-of-type(2),#mysubscribe_vue .info_box .fans td:nth-of-type(2){background:#e60045}
+    #recharge_vue .info_box .distance,#mysubscribe_vue .info_box .distance{position:absolute;bottom:2%;font-size:4vw;color:grey;left:4%}
+    #recharge_vue .wode{width:100%;height:90%}
+    #recharge_vue .wode .person{width: 100%;height: 45%;position: relative;}
+    #recharge_vue .wode .person > img{height: 100%;position: absolute;width: 100%;}
+    #recharge_vue .wode .person .person_box{height:100%;width:100%;}
+    #recharge_vue .wode .person .head-bg{position: relative;width: 52%;left: 48%;}
+    #recharge_vue .wode .person .head{position: absolute;width: 20%;left: 30%;transform: translateY(24%);}
+    #recharge_vue .wode .person .info{width: 50%;left: 50%;height: 55%;position: relative;padding-left: 5%;transform: translateY(-50%);}
+    #recharge_vue .wode .person h1{margin-top:0;color:#fff}
+    #recharge_vue .wode .person h6{margin-top:0;color:#fff}
+    #recharge_vue .wode .person p{color:red}
+    #recharge_vue .wode ul{margin-top:5%}
+    #recharge_vue .wode ul li{background:#fff;height:30%;width:33.3333%;float:left;border-bottom:1px solid #ddd;border-right:1px solid #ddd}
+    #recharge_vue .wode ul div.h60 img{position:relative;height:50%;top:40%}
+    #recharge_vue .wode h2{font-size:22px;color:white}
+    #recharge_vue .area{position:absolute;width:100%;height:90%;top:10%}
+    #recharge_vue .area .cover{height:100%;width:100%;background:#000;opacity:.4}
+    #recharge_vue .area .box{height:auto;width:100%;background:#fff;position:absolute;top:0}
+    #recharge_vue .area .left{height:auto;width:20%;background:#ddd;float:left}
+    #recharge_vue .area .right{height:auto;width:80%;background:#ddd}
+    #recharge_vue .area .left td{height:20px;background:#ddd}
+    #recharge_vue .area .left td.active{height:20px;background:#fff}
+    #recharge_vue .area .right td{height:20px;background:#fff}
+    #recharge_vue .area .right td.active{color:red}
+    #recharge_vue .area td{text-align:center;font-size:90%;padding:0 10px}
+    #recharge_vue .area tr{height:50px}
+    .bindPhone{position:absolute;width:100%;height:100%;top:0;left:0;z-index:99999;}
+    .bindPhone .cover{height:100%;width:100%;background:#000;opacity:.4}
+    .bindPhone .box{width:94%;position:absolute;top:0;left:0;right:0;bottom:0;margin:auto;height:236px;background:#fff}
+    .bindPhone input{padding:0;font-size:100%;outline:0;border:0;box-shadow:none;background-color:#f5f5f5}
+    .bindPhone .box .line_1{padding:5px 20px;border-bottom:1px solid #ddd}
+    .bindPhone .box .line_2,.bindPhone .box .line_3, .bindPhone .box .line_4{height:70px;padding:10px}
+    .bindPhone .box .line_2 input,.bindPhone .box .line_3 input{height:50px;width:100%;padding-left:16px}
+    .bindPhone .box .line_3 input{width:58%}
+    .bindPhone .box .line_3{padding-top:0}
+    .bindPhone .box .line_4{padding:0 10px 0 10px}
+    .bindPhone .box .line_4 span{display:block;width:50%;float:left;height:50px;line-height:50px;text-align:center}
+    .bindPhone .box .line_4 span:nth-of-type(1){background:red;color:#fff}
+    .bindPhone .box .line_4 span:nth-of-type(2){background:#f5f5f5}
+    .bindPhone .box .line_3 span{display:block;width:40%;text-align:center;background:#aaa;height:50px;float:right;color:#fff;line-height:50px}
+    #detail_barber_vue .tip,#recharge_vue .tip{position:absolute;width:100%;height:100%;top:0}
+    #detail_barber_vue .tip .cover,#recharge_vue .tip .cover{height:100%;width:100%;background:#000;opacity:.6}
+    #detail_barber_vue .tip .box,#recharge_vue .tip .box{border-radius:5px;width:80%;position:absolute;top:0;left:0;right:0;bottom:0;margin:auto;height:180px;background:#fff}
+    #detail_barber_vue .tip .box .line_1,#recharge_vue .tip .box .line_1{border-bottom:1px solid #ddd;height:50px;line-height:50px;text-align:center;font-weight:900;font-size:18px}
+    #detail_barber_vue .tip .box .line_2,#recharge_vue .tip .box .line_2{height:80px;font-size:15px;line-height:80px;padding:0 20px}
+    #detail_barber_vue .tip .box .line_3,#recharge_vue .tip .box .line_3{height:50px;background:red;color:#fff;font-size:18px;line-height:50px;text-align:center}
+    .intro_h2{margin: 0;font-size: 100%;margin-bottom: 2%;margin-top: 2%;font-weight:600}
+    .intro_p{margin: 0;padding-left: 5%;color: #555;width:100%}
+    .textInfo{text-align: center;font-family: 黑体;font-size: 110%;color: #ffffff;line-height: 200%;}
+
+    .selected{background-color: #D5074A;border-radius: 2vw;color: #ffffff;border: 0.6vw solid #D5074A;font-size: 5vw;}
+    .unselected{border-radius: 2vw;color: #ffffff;border: 0.6vw solid #D5074A;color: #D5074A;font-size: 5vw;}
+</style>
+
+<div class="titleBar" style="height: 20%;">
+    <table style="width: 70%;">
+        <tr>
+            <td>
+                <label style="font-family:'黑体';font-size: 150%;float: left;">{{user.nickname}}</label>
+                <br>
+                <br>
+                <label style="font-family:'黑体';font-size: 130%;color: #BABABA;float: left;">余额:{{amount}}元</label>
+            </td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td>
+                <img style="width: 100%;border-radius: 50%;" :src="user.avt"/>
+            </td>
+        </tr>
+    </table>
+</div>
+<br>
+<div class="titleBar" style="height: 25%;">
+    <table style="width: 100%;">
+        <tr>
+            <td colspan="3">
+                <label style="color: #4d4d4d;font-family: '黑体';font-size: 130%;float: left;">优惠充值:</label>
+            </td>
+        </tr>
+        <tr>
+            <td v-for="recharge in rechargeOptionsList" @click="rechargeOptionsClick($index)">
+                <div class="{{recharge.status?'selected':'unselected'}}">
+                    充值{{recharge.price}}
+                    <br>
+                    送{{recharge.give_price}}
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<button style="width: 90%;margin-left: 5%;margin-top:10%;margin-bottom: 3%;" class="btn btn-success btn-lg" @click="buy()">立即充值
+</button>

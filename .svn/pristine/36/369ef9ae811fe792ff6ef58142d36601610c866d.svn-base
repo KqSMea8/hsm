@@ -1,0 +1,7 @@
+<img class="ma pos_a t0 l0 r0 w100" style="bottom:10vh"
+     src="https://wx-1253594735.file.myqcloud.com/barber/images/share_background.png"/>
+<img id="buy" style="bottom:10vh;position: absolute;left: 10%;top: 70%;"
+     src="https://wx-1253594735.file.myqcloud.com/barber/images/share_button.png" width="80%" @click="share()"/>
+<a @click="forget()" style="color: #ef1356;font-size: 120%;font-family: 黑体;position: absolute;left: 38%;top: 80%;">以后再说吧</a>
+<!---->
+

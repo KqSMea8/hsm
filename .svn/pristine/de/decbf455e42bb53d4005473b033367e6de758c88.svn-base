@@ -1,0 +1,44 @@
+//https://www.jianyuepai.com.cn/wx_cp/api/user/login.php?clientType=wx&redirect=https://www.jianyuepai.com.cn/hsm/dist/user/real.php?hash=commodity_detail
+class commodity_detail extends Page {
+    constructor(hash) {
+        super(hash, require('tpl.html'));
+    }
+
+    vue_() {
+        this.vue = new VueP({
+            el: this.hash + '_vue',
+            created() {
+                this.launcher = launcher.vue;
+                this.db = db;
+            },
+            compiled() {
+            },
+            data: {},
+            methods: {
+                init() {
+                    /*Message.toast("该礼包已下架, 请关注其他优惠活动", 3);
+                    console.log(db.data.user);*/
+                },
+                buy() {
+                    let dataStr = `{
+                        "commodity_id" : 4
+                    }`;
+                    Util.ajax(dataStr, `${db.data.api}setBuyInfo.php`, (data) => {
+                        if (data.e !== 0) {
+                            if (data.e == -5) {
+                                Message.toast("您已经购买过该礼包了, 看看其他活动吧!", 5)
+                            } else {
+                                MessageBarber.alert('生成订单信息失败!请联系工作人员');
+                            }
+                        } else {
+                            this.db.data.buy_id = data.data.buyId;
+                            this.jump('buy');
+                        }
+                    });
+                }
+            }
+        });
+    }
+}
+
+/////

@@ -1,0 +1,365 @@
+<style>
+    #index_vue .titleBar,#mysubscribe_vue .titleBar{height:10%;background:#fff}
+    #index_vue .titleBar>div,#mysubscribe_vue .titleBar>div{float:left;height:100%;text-align:center;width:30%}
+    #index_vue .titleBar>table,#mysubscribe_vue .titleBar>table{height:100%;width:20%;float:left}
+    #index_vue .titleBar>table td,#mysubscribe_vue .titleBar>table td{text-align:center;font-size:3vw;padding:0 4%}
+    #index_vue .titleBar_title,#mysubscribe_vue .titleBar_title{height:100%;width:100%}
+    #index_vue .titleBar_title span,#mysubscribe_vue .titleBar_title span{font-size:4.5vw;}
+    #index_vue .titleBar .glyphicon-chevron-left{transform:rotate(90deg);transition:all .4s ease}
+    #index_vue .titleBar .rotate{transform:rotate(-90deg)}
+    #index_vue .search{width:36%}
+    #index_vue .yueta{height:80%}
+    #mysubscribe_vue .yueta{height:90%}
+    #index_vue .yueta .person,#mysubscribe_vue .yueta .person{overflow:scroll;-webkit-overflow-scrolling:touch;width:100%;height:100%;position:relative}
+    #index_vue .yueta .store,#mysubscribe_vue .yueta .store{overflow:scroll;-webkit-overflow-scrolling:touch;width:100%;height:100%;position:relative}
+    #index_vue .footBar{width:100%;background:#fff;height:10%}
+    .red{color:red}
+    .grey{color:#777}
+    .border_bottom_red{border-bottom:solid 2px red}
+    #index_vue .info_box,#mysubscribe_vue .info_box{margin:3%;background:#fff}
+    #index_vue .info_box>div,#mysubscribe_vue .info_box>div{background:#fff}
+    #index_vue .info_box .line1,#mysubscribe_vue .info_box .line1{padding:3% 0;font-size:4vw}
+    #index_vue .info_box .name,#mysubscribe_vue .info_box .name{font-weight:900;font-size: 4vw;}
+    #index_vue .info_box .studio,#mysubscribe_vue .info_box .studio{width:19%;color:#aaa}
+    #index_vue .info_box .waitting,#mysubscribe_vue .info_box .waitting{text-align:right}
+    #index_vue .footBar>div{width:50%;float:left;height:100%;text-align:center}
+    #index_vue .footBar>div>div{height:60%}
+    #index_vue .footBar img{height:80%;top:20%;position:relative}
+    #index_vue .info_box ul,#mysubscribe_vue .info_box ul{position:relative;width:100%;background:#fff}
+    #index_vue .info_box li,#mysubscribe_vue .info_box li{float:left}
+    #index_vue .info_box ul.block,#mysubscribe_vue .info_box ul.block{height:auto}
+    #index_vue .info_box ul:nth-of-type(1) li,#mysubscribe_vue .info_box ul:nth-of-type(1) li{width:50%;height:100%}
+    #index_vue .info_box ul:nth-of-type(1) li:nth-of-type(2),#mysubscribe_vue .info_box ul:nth-of-type(1) li:nth-of-type(2){text-align:right}
+    #index_vue .info_box ul:nth-of-type(1) span,#mysubscribe_vue .info_box ul:nth-of-type(1) span{font-size:17px}
+    #index_vue .info_box ul:nth-of-type(1) span.name,#mysubscribe_vue .info_box ul:nth-of-type(1) span.name{font-size:18px;font-weight:900}
+    #index_vue .info_box ul:nth-of-type(3) li,#mysubscribe_vue .info_box ul:nth-of-type(3) li{width:50%;height:100%}
+    #index_vue .info_box ul:nth-of-type(3) li:nth-of-type(2),#mysubscribe_vue .info_box ul:nth-of-type(3) li:nth-of-type(2){text-align:right}
+    #index_vue .info_box ul:nth-of-type(3) img,#index_vue .info_box ul:nth-of-type(4) img,#mysubscribe_vue .info_box ul:nth-of-type(3) img{height:38%;top:28%;position:relative}
+    #index_vue .info_box ul:nth-of-type(3) span,#mysubscribe_vue .info_box ul:nth-of-type(3) span{font-size:16px}
+    #index_vue .info_box ul:nth-of-type(4) li,#mysubscribe_vue .info_box ul:nth-of-type(4) li{width:50%;height:100%}
+    #index_vue .info_box ul:nth-of-type(4) li:nth-of-type(2),#mysubscribe_vue .info_box ul:nth-of-type(4) li:nth-of-type(2){text-align:right}
+    #index_vue .info_box ul:nth-of-type(4) span,#mysubscribe_vue .info_box ul:nth-of-type(4) span{font-size:16px}
+    .pink{color:pink}
+    .borderRed{border:1px solid red}
+    .borderPink{border:1px solid pink}
+    #index_vue .info_box .yijian,#mysubscribe_vue .info_box .yijian{border-radius: 53px;width: 58%;display: inline-block;text-align: center;position: relative;padding: 6% 2%;font-size: 3vw;margin-right: 10%;}
+    #index_vue .info_box .fans,#mysubscribe_vue .info_box .fans{bottom:4%;left:51%;width:46%;position:absolute;font-size: 3vw;}
+    #index_vue .info_box .fans td,#mysubscribe_vue .info_box .fans td{padding:2% 0;text-align:center;line-height:1.1;color:#fff}
+    #index_vue .info_box .fans td:nth-of-type(1),#mysubscribe_vue .info_box .fans td:nth-of-type(1){background:#D60040}
+    #index_vue .info_box .fans td:nth-of-type(2),#mysubscribe_vue .info_box .fans td:nth-of-type(2){background:#e60045}
+    #index_vue .info_box .distance,#mysubscribe_vue .info_box .distance{position:absolute;bottom:2%;font-size:4vw;color:grey;left:4%}
+    #index_vue .wode{width:100%;height:90%}
+    #index_vue .wode .person{width: 100%;height: 45%;position: relative;}
+    #index_vue .wode .person > img{    height: 100%;position: absolute;width: 100%;}
+    #index_vue .wode .person .person_box{height:100%;width:100%;}
+    #index_vue .wode .person .head-bg{    position: relative;
+        width: 52%;
+        left: 48%;}
+    #index_vue .wode .person .head{    position: absolute;
+        width: 20%;
+        left: 30%;
+        transform: translateY(14%);}
+    #index_vue .wode .person .info{width: 50%;left: 50%;height: 55%;position: relative;padding-left: 5%;transform: translateY(-30%);}
+    #index_vue .wode .person h1{margin-top:0;color:#fff}
+    #index_vue .wode .person h6{margin-top:0;color:#fff}
+    #index_vue .wode .person p{color:red}
+    #index_vue .wode ul{margin-top:5%}
+    #index_vue .wode ul li{background:#fff;height:30%;width:33.3333%;float:left;border-bottom:1px solid #ddd;border-right:1px solid #ddd}
+    #index_vue .wode ul div.h60 img{position:relative;height:50%;top:40%}
+    #index_vue .wode h2{font-size:22px;color:white}
+
+    #index_vue .area{position:absolute;width:100%;height:90%;top:20%}
+    #index_vue .area .cover{height:100%;width:100%;background:#000;opacity:.4}
+    #index_vue .area .box{height:auto;width:100%;background:#fff;position:absolute;top:0}
+    #index_vue .area .left{height:auto;width:20%;background:#ddd;float:left}
+    #index_vue .area .right{height:auto;width:80%;background:#ddd}
+    #index_vue .area .left td{height:20px;background:#ddd}
+    #index_vue .area .left td.active{height:20px;background:#fff}
+    #index_vue .area .right td{height:20px;background:#fff}
+    #index_vue .area .right td.active{color:red}
+    #index_vue .area td{text-align:center;font-size:90%;padding:0 10px}
+    #index_vue .area tr{height:50px}
+
+    .bindPhone{position:absolute;width:100%;height:100%;top:0;left:0;z-index:99999;}
+    .bindPhone .cover{height:100%;width:100%;background:#000;opacity:.4}
+    .bindPhone .box{width:94%;position:absolute;top:0;left:0;right:0;bottom:0;margin:auto;height:236px;background:#fff}
+    .bindPhone input{padding:0;font-size:100%;outline:0;border:0;box-shadow:none;background-color:#f5f5f5}
+    .bindPhone .box .line_1{padding:5px 20px;border-bottom:1px solid #ddd}
+    .bindPhone .box .line_2,.bindPhone .box .line_3, .bindPhone .box .line_4{height:70px;padding:10px}
+    .bindPhone .box .line_2 input,.bindPhone .box .line_3 input{height:50px;width:100%;padding-left:16px}
+    .bindPhone .box .line_3 input{width:58%}
+    .bindPhone .box .line_3{padding-top:0}
+    .bindPhone .box .line_4{padding:0 10px 0 10px}
+    .bindPhone .box .line_4 span{display:block;width:50%;float:left;height:50px;line-height:50px;text-align:center}
+    .bindPhone .box .line_4 span:nth-of-type(1){background:red;color:#fff}
+    .bindPhone .box .line_4 span:nth-of-type(2){background:#f5f5f5}
+    .bindPhone .box .line_3 span{display:block;width:40%;text-align:center;background:#aaa;height:50px;float:right;color:#fff;line-height:50px}
+
+    #detail_barber_vue .tip,#index_vue .tip{position:absolute;width:100%;height:100%;top:0}
+    #detail_barber_vue .tip .cover,#index_vue .tip .cover{height:100%;width:100%;background:#000;opacity:.6}
+    #detail_barber_vue .tip .box,#index_vue .tip .box{border-radius:5px;width:80%;position:absolute;top:0;left:0;right:0;bottom:0;margin:auto;height:180px;background:#fff}
+    #detail_barber_vue .tip .box .line_1,#index_vue .tip .box .line_1{border-bottom:1px solid #ddd;height:50px;line-height:50px;text-align:center;font-weight:900;font-size:18px}
+    #detail_barber_vue .tip .box .line_2,#index_vue .tip .box .line_2{height:80px;font-size:15px;line-height:80px;padding:0 20px}
+    #detail_barber_vue .tip .box .line_3,#index_vue .tip .box .line_3{height:50px;background:red;color:#fff;font-size:18px;line-height:50px;text-align:center}
+    .intro_h2{margin: 0;font-size: 100%;margin-bottom: 2%;margin-top: 2%;font-weight:600}
+    .intro_p{margin: 0;padding-left: 5%;color: #555;width:100%}
+
+    .textInfo{text-align: center;font-family: 黑体;font-size: 110%;color: #ffffff;line-height: 200%;}
+</style>
+<div id="head_advertising">
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <!--<div class="swiper-slide">
+                <img style="bottom:10vh"
+                     src="https://wx-1253594735.file.myqcloud.com/barber/images/buy_index_header.gif" width="100%"
+                     @click="commodity_detail()"/>
+            </div>-->
+            <div class="swiper-slide">
+                <img style="bottom:10vh"
+                     src="https://wx-1253594735.file.myqcloud.com/barber/images/share_index_header.png" width="100%"
+                     @click="share()"/>
+            </div>
+        </div>
+        <!-- 如果需要分页器 -->
+        <div class="swiper-pagination"></div>
+    </div>
+</div>
+<div class="titleBar {{footBar[0].status?'':'disn'}}">
+    <table>
+        <tr>
+            <td @click="change('showArea')">
+                {{nowCity}}
+                <span class="glyphicon glyphicon-chevron-left {{showArea?'rotate':''}}"></span>
+            </td>
+        </tr>
+    </table>
+    <div v-for="item in titleBar" @click="titleItemClick($index)">
+        <table class="titleBar_title {{item.status?'red border_bottom_red':'grey'}}">
+            <tr>
+                <td>
+                    {{item.text}}
+                </td>
+            </tr>
+        </table>
+    </div>
+    <table>
+        <tr>
+            <td>
+                <img class="search" :src="(db.data.oss)+'barber/images/search.png'">
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="yueta {{footBar[0].status?'':'disn'}}">
+    <div class="person {{titleBar[0].status?'':'disn'}}">
+        <div class="info_box" v-for="barber in barberList">
+            <table class="line w100 h10" @click="launcher.detail_barber(barber.id)">
+                <tr>
+                    <td class="line1 name w50">
+                        &nbsp;&nbsp;&nbsp;&nbsp;{{barber.name}}
+                        &nbsp;<span class="grey" style="font-weight: 100;transform: translateY(-3px);">{{barber.stduioName}}</span></td>
+                    <td style="    font-size: 3vw;" class="line1 w50 txtr grey" v-html="barber.waitStr+'&nbsp;&nbsp;&nbsp;&nbsp;'"></td>
+                </tr>
+            </table>
+            <ul class="block" @click="launcher.detail_barber(barber.id)">
+                <img class="w100" :src="(barber.img.length>10)?barber.img:db.data.oss+'barber/images/hello.jpg'" />
+                <div class="distance">
+                    {{launcher.getDistance(barber.distance)}}
+                </div>
+                <table class="fans">
+                    <tr>
+                        <td>
+                            {{barber.fans}}
+                            <br>粉丝数
+                        </td>
+                        <td>
+                            {{barber.satisfaction}}%
+                            <br>满意度
+                        </td>
+                    </tr>
+                </table>
+            </ul>
+            <table class="w100">
+                <tr>
+                    <td class="line1">
+                        &nbsp;&nbsp;
+                        <img class="h50" :src="db.data.oss+'barber/images/pinglun.png'">
+                        <span class="grey" v-html="'&nbsp;&nbsp;评论数&nbsp;&nbsp;'+barber.comments">&nbsp;</span>
+                    </td>
+                    <td class="txtr line1" @click="launcher.detail_barber(barber.id)">
+                        <span class="black" v-html="barber.srv+'&nbsp;&nbsp;'">&nbsp;</span>
+                        <b class="red">{{barber.price}}￥&nbsp;</b>
+                        <b style="color:#ddd;text-decoration:line-through;">{{barber.original_price}}￥</b>&nbsp;&nbsp;&nbsp;
+                    </td>
+                </tr>
+            </table>
+            <table class="w100" style="border-top:1px solid #ddd;">
+                <tr>
+                    <td class="line1 w50">
+                        &nbsp;&nbsp;
+                        <!--<img class="h40" :src="db.data.oss+'barber/images/hongbao.png'">-->
+                        <b class="red">
+                        <!--&nbsp;&nbsp;首单 {{studio.firstDiscountTxt}}-->
+                        </b>
+                        <!--{{db.data.strategies[Math.floor(studio.discount_id)].discount}}元-->
+                    </td>
+                    <td class="line1 w50 txtr">
+                        <div class="yijian {{(barber.work_state==1)?'red borderRed':'pink borderPink'}}" @click="launcher.quhao(barber,barber.service,barber.work_state)">
+                            <span>{{(barber.work_state==1)?'一键取号':((barber.work_state==0)?'已下班':'吃饭中')}}</span>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="store {{titleBar[1].status?'':'disn'}}">
+        <div class="info_box" v-for="studio in studioList">
+            <table class="w100" @click="launcher.detail_studio(studio.id)">
+                <tr>
+                    <td class="line1 name w50">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{studio.name}}
+                    </td>
+                    <td style="font-size:3vw" class="line1 w50 txtr grey">
+                        {{studio.stateStr}}> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </td>
+                </tr>
+            </table>
+            <ul class="block" @click="launcher.detail_studio(studio.id)">
+                <img class="w100" :src="studio.img" />
+                <div class="distance">
+                    {{launcher.getDistance(studio.distance)}}
+                </div>
+                <table class="pos_a fans">
+                    <tr>
+                        <td>
+                            {{studio.fans}}
+                            <br>粉丝数
+                        </td>
+                        <td>
+                            {{studio.satisfaction}}%
+                            <br>满意度
+                        </td>
+                    </tr>
+                </table>
+            </ul>
+            <table class="w100">
+                <tr>
+                    <td class="line1 name w50">
+                        &nbsp;&nbsp;
+                        <img class="h40" :src="db.data.oss+'barber/images/hongbao.png'">
+                        <b class="red" @click="share()">
+                            <!--&nbsp;&nbsp;首单 {{studio.firstDiscountTxt}}-->
+                            {{studio.titleText}}
+                        </b>
+                    </td>
+                    <td class="line1 w50 txtr">
+                        <span class="black">{{studio.srv}}</span>
+                        <b class="red">{{studio.price}}￥&nbsp;</b>
+                        <b style="color:#ddd;text-decoration:line-through;">{{studio.original_price}}￥</b>
+                        &nbsp;&nbsp;&nbsp;
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="wode {{footBar[1].status?'':'disn'}}">
+    <div class="person">
+        <img :src="db.data.osss+'barber/images/personbg_new.png'">
+        <table class="person_box">
+            <tr>
+                <td class="w50">
+                    <!--<img class="head-bg" :src="db.data.oss+'barber/images/head-bg.png'">-->
+                    <img class="head" style="border-radius: 50%;position: absolute;width: 25%;left: 37%;transform: translateY(-120%);" :src="db.data.user.avt || db.data.oss+'barber/images/hongbao.png'">
+                </td>
+                <!--<td class="w50" style="padding: 0 5%;">
+                    <h2 class="pos_r" style="font-size:5vw">{{db.data.user.nickname}}</h2>
+                    <h6 class="pos_r" style="font-size:3vw">{{db.data.user.phone}}</h6>
+                    <p class="pos_r" style="font-size:3vw" @touchstart="change('showBindPhoneView')">{{(db.data.user.phone)?'更换..>':'绑定手机..>'}}</p>
+                    <p class="pos_r" style="font-size:3vw" @touchstart="exit()">登出</p>
+                </td>-->
+                <td class="w50">
+                    <h2 style="position:absolute;font-size:5vw;color: #ffffff;font-family: 黑体;transform: translateX(-50%);margin-top: 1%;">{{db.data.user.nickname}}</h2>
+                    <br>
+                    <h2 style="position:absolute;font-size:7vw;color: #ffc200;font-family: 黑体;transform: translateX(-50%);margin-top: 3%;"><span style="font-size: 3vw;">￥&nbsp;</span>{{db.data.user.amount}}</h2>
+                    <br>
+                    <h7 style="position:absolute;font-size:3vw;color: #d5d5d5;font-family: 黑体;transform: translateX(-50%);margin-top: 5%;">我的余额</h7>
+                </td>
+            </tr>
+        </table>
+        <div class="textInfo" style="position:absolute;background-color: #e60045;margin-top: -15%;height: 25.5%;width: 33.3%;border-right: dashed 1px gray;" @click="show_deal_detail(2)">
+            <span>累计赠送</span>
+            <br>
+            <span style="font-size: 120%;">{{totalGiveAmount}}元</span>
+        </div>
+        <div class="textInfo" style="position:absolute;background-color: #e60045;margin-top: -15%;margin-left:33.3%;height: 25.5%;width: 33.3%;border-right: dashed 1px gray;" @click="jump('mytickets')">
+            <span>优惠卷</span>
+            <br>
+            <span style="font-size: 120%;">{{availableTicketCount}}张</span>
+        </div>
+        <div class="textInfo" style="position:absolute;background-color: #e60045;margin-top: -15%;margin-left:66.6%;height: 25.5%;width: 33.3%;" @click="show_deal_detail(0)">
+            <span>消费明细</span>
+            <br>
+            <span style="font-size: 120%;">{{dealDetailCount}}条</span>
+        </div>
+    </div>
+    <ul class="h50" style="    font-size: 3vw;">
+        <li v-for="option in options" @touchstart="jump(option.hash)">
+            <div class="h60 txtc">
+                <img :src="db.data.oss+'barber/images/' + option.img">
+            </div>
+            <div class="h40 txtc">
+                <span class="{{(option.status)?'':'grey'}}">{{option.text}}</span>
+            </div>
+        </li>
+        <div class="bc"></div>
+    </ul>
+</div>
+<div class="footBar" style="font-size:3vw;">
+    <div v-for="item in footBar" @touchstart="footItemClick($index)">
+        <div>
+            <img :src="getFooterImg(item)">
+        </div>
+        <span class="{{item.status?'cl000':'grey'}}">{{item.text}}</span>
+    </div>
+</div>
+<div class="area {{showArea?'':'disn'}}">
+    <div class="cover" @click="change('showArea')"></div>
+    <div class="box">
+        <table class="left">
+            <tr v-for="cityObj in cityList">
+                <td class="{{(nowCity==$key)?'active':''}}" @touchstart="db.data.nowCityIndex=$index">{{$key}}</td>
+            </tr>
+        </table>
+        <table class="right">
+            <tr>
+                <td @touchstart="areaClick($event,-1)" class="{{(nowArea)?'':'active'}}"><span class="fl">全部</span><span class="fr">{{getNowCityStudioCount()}}家店</span></td>
+            </tr>
+            <tr v-for="areaObj in cityList[nowCity]">
+                <td class="{{(nowArea==$key)?'active':''}}"
+                    @touchstart="areaClick($event,$index,region.parentIndex)"><span class="fl">{{$key}}</span><span class="fr">{{getAreaCount(areaObj)}}家店</span></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="bindPhone {{showBindPhoneView? '':'disn'}}">
+    <div class="cover" @touchstart="change('showBindPhoneView')"></div>
+    <div class="box">
+        <div class="line_1">
+            {{(!!db.data.user.phone===false)?'绑定手机号':'更换手机号'}}
+        </div>
+        <div class="line_2">
+            <input placeholder="输入手机号" v-model="phone">
+        </div>
+        <div class="line_3">
+            <input placeholder="输入验证码" v-model="phoneCheck">
+            <span @touchstart="sendPhoneCheck()">{{checkText}}</span>
+        </div>
+        <div class="line_4">
+            <span @click="bindPhone()">确定</span>
+            <span @click="change('showBindPhoneView')">取消</span>
+        </div>
+    </div>
+</div>
+

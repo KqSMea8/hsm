@@ -1,0 +1,142 @@
+<style>
+    #ticket_vue{overflow: hidden}
+    #ticket_vue .main{background: #fff;width: 92%;height: auto;position: relative;text-align: center;margin-left: 4%;padding-bottom: 16%}
+    #ticket_vue .talk{width: 94%;margin-left: 3%;font-size: 6vw}
+    #ticket_vue .main .info{font-size: 2.6vw;color: #aaa}
+    #ticket_vue .main .info:nth-of-type(1){margin-top: 2%}
+    #ticket_vue .main .info:nth-of-type(2){margin-bottom: 2%}
+    #ticket_vue .talk .t1{padding: 6% 0 0}
+    #ticket_vue .talk .t1 img{width: 15%;border-radius: 50%;border: solid 2px #ddd}
+    #ticket_vue .talk .t1 span:nth-of-type(2){display: inline-block;width: 66%;text-align: right;font-size: 40%;color: #777}
+    #ticket_vue .talk .t2{padding: 4% 0 6%;border-bottom: 1px solid #aaa;font-size: 58%;color: #666}
+    #ticket_vue .bottom{background: #aaa;position: fixed;height: 8%;bottom: -1px;font-size: 4vw}
+    #ticket_vue .bottom table{width: 100%;background: red;height: 100%}
+    #ticket_vue .bottom td{text-align: center;color: #fff}
+    #ticket_vue .ticket{margin-bottom: 4%;width: 100%;height: 20%;}
+    #ticket_vue .ticket img{width: 100%}
+    #ticket_vue .ticket td > div{background: #fff;padding: 3% 11%;text-align: center;font-size: 3vw;display: inline-block}
+    #ticket_vue .ticket td:nth-of-type(1){width: 7%;font-size: 11vw;color: #fff;text-align: center}
+    #ticket_vue .ticket td:nth-of-type(2){width: 24%;font-size: 3vw;color: #fff}
+    #ticket_vue .ticket td:nth-of-type(3){width: 15%;text-align: center}
+    #ticket_vue .comment_box, #comment_list_vue .comment_box{background: #fff;width: 94%;margin-left: 3%;margin-bottom: 3%;font-size: 3vw;}
+    #ticket_vue .comment_line_1 td:nth-of-type(1), #comment_list_vue .comment_line_1 td:nth-of-type(1){width: 5%;padding: 3%}
+    #ticket_vue .comment_line_1 td:nth-of-type(2), #comment_list_vue .comment_line_1 td:nth-of-type(2){width: 10%}
+    #ticket_vue .comment_line_1 td:nth-of-type(3), #comment_list_vue .comment_line_1 td:nth-of-type(3){width: 10%;padding-right: 4%}
+    #ticket_vue .comment_line_1 td:nth-of-type(3) img, #comment_list_vue .comment_line_1 td:nth-of-type(3) img{width: 10%;transform: scale(1.2)}
+    #ticket_vue .comment_line_1 .head, #comment_list_vue .comment_line_1 .head{width: 100%;border-radius: 50%}
+    #ticket_vue .content, #comment_list_vue .content{padding: 0 4% 3%;word-break: break-all}
+    #ticket_vue .image, #comment_list_vue .image{padding: 0 3% 3%}
+    #ticket_vue .image img, #comment_list_vue .image img{width: 30%;margin-right: 3%;}
+    #ticket_vue .time, #comment_list_vue .time{color: #aaa;padding: 0 3% 2%}
+    #ticket_vue .box_box, #comment_list_vue .box_box{height: 93%;overflow: scroll;margin-top: 12%;padding-top: 3%;}
+</style>
+<div class="w100 h100" style="overflow: scroll;-webkit-overflow-scrolling:touch;overflow-x: hidden;">
+    <div class="w100 pos_r t0"
+         style="background: url('https://wx-1253594735.file.myqcloud.com/barber/images/friend_share_info.png');background-size:100% 100%;height: 300%;">
+    </div>
+    <table class="ticket"
+           style="background:url('https://wx-1253594735.cosgz.myqcloud.com/1253480904/barber/images/bg-coupon.jpg');background-size:100% 100%;
+           position: relative;top: -245%;">
+        <tr>
+            <td>
+                {{ticket.discount}}
+            </td>
+            <td>
+                <b style="font-size:4vw">￥</b>
+                <span style="color:#ddd;display:inline;" :class="(ticket.from)?'':'disn'">{{(ticket.from)?'(由'+ticket.from+'分享给您的)':''}}</span>
+                <br/>
+                使用范围：{{ticket.studio?ticket.studio:'通用'}}<br/>
+                有效期至{{ticket.end_time}}
+            </td>
+            <td>
+                <div style="background:none;color:#fff;">
+                    {{ticket.keyword}}
+                </div>
+            </td>
+        </tr>
+    </table>
+    <div style="position: relative;top: -240%;left: 36%;">
+        <a @click="mytickets()" style="color: #ef1356;font-size: 120%;font-family: 黑体">点击查看详情&gt;&gt;&gt;</a>
+    </div>
+    <div class="comment_box" v-for="comment in comments" style="position: relative;top: -230%;">
+        <table class="comment_line_1">
+            <tr>
+                <td>
+                    <img class="head" :src="comment.userAvt"/>
+                </td>
+                <td>
+                    <span>{{comment.userName}}</span><br/>
+                    <span>{{comment.userPhone}}</span>
+                </td>
+                <td class="txtr">
+                    <span>&nbsp;</span><br/>
+                    <img :src="db.data.oss+'barber/images/start_orange.svg'"/>
+                    <img :src="db.data.oss+'barber/images/start_orange.svg'"/>
+                    <img :src="db.data.oss+'barber/images/start_orange.svg'"/>
+                    <img :src="db.data.oss+'barber/images/start_orange.svg'"/>
+                    <img :src="db.data.oss+'barber/images/start_orange.svg'"/>
+                    <span>5.0分</span>
+                </td>
+            </tr>
+        </table>
+        <div class="content">
+            {{comment.content}}
+        </div>
+        <!--<div class="image" v-if="comment.img.length > 0">
+            <img @click="launcher.look(comment.img.join('|'), opu)" v-for="opu in comment.img" :src="opu">
+        </div>-->
+        <div class="time w100 txtr">
+            发型师:{{comment.barberName}} &nbsp;&nbsp;{{comment.create_time}}
+        </div>
+    </div>
+    <div style="position: relative;top: -230%;left: 36%;">
+        <a @click="comment(barber.id)" style="color: #feae57;font-size: 120%;font-family: 黑体">点击查看更多&gt;&gt;&gt;</a>
+    </div>
+    <div style="position: relative;top: -225%;left: 27%;">
+        <span style="color: #ef1356;font-size: 120%;font-family: 黑体">&lt;我的专属发型设计师&gt;</span>
+    </div>
+    <div style="position: relative;top: -223%;left: 35%;">
+        <img style="width: 100%;border-radius: 50%;width: 30%;"
+             src="{{barber.avt}}">
+    </div>
+    <div style="position: relative;top: -220%;text-align: center;">
+        <span style="color: #545454;font-size: 120%;font-family: 黑体">{{barber.name}}</span>
+    </div>
+    <div style="position: relative;top: -219%;text-align: center;">
+        <span style="color: #545454;font-size: 120%;font-family: 黑体">{{barber.introduce}}</span>
+    </div>
+
+    <div style="position: relative;top: -200%;text-align: left;">
+        <span style="color: #e62129;font-size: 120%;font-family: 黑体;padding-left: 5%;">蛇口店</span>
+        <br>
+        <br>
+        <span style="color: #818181;font-size: 120%;font-family: 黑体;padding-left: 5%;">南山区蛇口步行街209号商铺</span>
+        <br>
+        <br>
+        <img v-for="i in shekouImgArr" :src="shekouImgArr[$index]" width="30%" style="margin-left: 2%;" @click="look(shekouImgArr[$index],shekouImgArr)"/>
+        <hr>
+    </div>
+    <div style="position: relative;top: -200%;text-align: left;">
+        <span style="color: #e62129;font-size: 120%;font-family: 黑体;padding-left: 5%;">下沙店</span>
+        <br>
+        <br>
+        <span style="color: #818181;font-size: 120%;font-family: 黑体;padding-left: 5%;">福田区车公庙下沙五坊88号-2商铺(下沙主街十字路口)</span>
+        <br>
+        <br>
+        <img v-for="i in pingzhouImgArr" :src="pingzhouImgArr[$index]" width="30%" style="margin-left: 2%;" @click="look(pingzhouImgArr[$index], pingzhouImgArr)"/>
+        <hr>
+    </div>
+    <div style="position: relative;top: -200%;text-align: left;">
+        <span style="color: #e62129;font-size: 120%;font-family: 黑体;padding-left: 5%;">坪洲店</span>
+        <br>
+        <br>
+        <span style="color: #818181;font-size: 120%;font-family: 黑体;padding-left: 5%;">宝安区西乡街道坪洲轻铁西五巷1号102(财富港C座背面)</span>
+        <br>
+        <br>
+        <img v-for="i in xiashaImgArr" :src="xiashaImgArr[$index]" width="30%" style="margin-left: 2%;" @click="look(xiashaImgArr[$index], xiashaImgArr)"/>
+        <hr>
+    </div>
+
+</div>
+
+

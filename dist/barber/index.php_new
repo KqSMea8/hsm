@@ -1,0 +1,46 @@
+<?php
+//https://www.jianyuepai.com.cn/wx_cp/api/barber/login.php?clientType=wx&redirect=https://www.jianyuepai.com.cn/hsm/barber/index.php?hash=index
+$time = $_GET['time']??'';
+$bopenid = false;
+$bid = false;
+if (isset($_GET['bopenid'])) {
+    $bopenid = @$_GET['bopenid'];
+    if (!$time || !$bopenid)
+        die('no access');
+    $_GET['hash'] = 'bind_phone';
+    $secret = strtoupper(md5($bopenid . $time . 'b2X5OffTZttk9&@wJPMwfGh%5d@*^%'));
+} else {
+    $bid = @$_GET['bid'];
+    if (!$time || !$bid)
+        die('no access');
+    $secret = strtoupper(md5($bid . $time . 'b2X5OffTZttk9&@wJPMwfGh%5d@*^%'));
+}
+?>
+<!DOCTYPE html>
+<html lang=en>
+<head id="db_vue">
+    <meta charset=UTF-8>
+    <meta name=viewport content="width=device-width,minimum-scale=1,maximum-scale=1">
+    <title>剪约派</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/css.css?v=1507531143.0254416">
+    <link rel="stylesheet" type="text/css" href="css/app.css?v=1507540686.5734284">
+    <style>
+        section{background-color:#EFEFEF;-webkit-transform:translate(100%,0);transform:translate(100%,0);display:none}
+        section#launcher_vue{display:block;-webkit-transform:translate(0,0);transform:translate(0,0);}
+        section#launcher_vue .loading{width:10%;left:45%;position:absolute;top:58%}
+    </style>
+<!--    <script src="http://wechatfe.github.io/vconsole/lib/vconsole.min.js?v=2.5.2"></script>-->
+</head>
+<body ontouchstart="">
+<section id="launcher_vue">
+    <img style="position: absolute;top: 0;left: 0;right: 0;bottom: 10vh;margin: auto;width: 100%;"
+         src="https://wx-1253594735.cosgz.myqcloud.com/barber/images/launcher.jpg"/>
+    <img class="loading" src="https://wx-1253594735.cosgz.myqcloud.com/barber/images/loading.gif"/>
+</section>
+
+<!--<script src="https://cdn.bootcss.com/vue/1.0.13/vue.min.js"></script>-->
+<script src="https://cdn.bootcss.com/vue/1.0.28/vue.min.js"></script>
+<script src="../static/js/head.load.min.js?v=1505980038.0010412"></script>
+<script src="../static/js/extend.js?v=1505980046.5678737"></script>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>

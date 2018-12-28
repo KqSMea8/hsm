@@ -1,0 +1,5 @@
+<img class="ma pos_a t0 l0 r0 w100" style="bottom:10vh"
+     src="https://wx-1253594735.file.myqcloud.com/barber/images/buy_background.png"/>
+<!--<img id="buy" style="bottom:10vh;position: absolute;left: 24%;top: 92%;"
+     src="https://wx-1253594735.file.myqcloud.com/barber/images/buy_button.png" width="50%" @click="buy()"/>-->
+

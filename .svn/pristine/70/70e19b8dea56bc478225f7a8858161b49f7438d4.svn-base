@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang=en xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head id="db_vue">
+    <meta charset=UTF-8>
+    <meta name=viewport content="width=device-width,minimum-scale=1,maximum-scale=1">
+    <title>剪约派</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/css.css">
+</head>
+<body>
+<section id="index_vue" >
+    <table class="table table-striped">
+        <caption style="text-align: center">员工表
+            <select style="    width: 100px;
+        display: inline-block;" class="form-control" v-model="selected" @change="get_barbers_detail()">
+                <option v-for="option in options" v-bind:value="option.value">
+                    {{ option.text }}
+                </option>
+            </select>
+        </caption>
+        <thead>
+        <tr>
+            <th style="{{$index==2?'width:30%':'width:17%'}}" v-for="name in title_list">{{name}}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="barber in barber_list">
+            <td>
+                <img style="width:95%;;" src="{{barber.avt}}" /></td>
+            <td>{{barber.name}}</td>
+            <td>
+                <select v-model="selected_1" class="form-control" @change="change_sid(barber, $event)" @change="get_barbers_detail()">
+                    <option v-for="option in options" v-bind:value="option.value">
+                        {{ option.text }}
+                    </option>
+                </select>
+
+            </td>
+            <td>
+                <button class="btn btn-success" @click="save(barber)">确定</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</section>
+</body>
+</html>
+<script src="../static/js/vue.js"></script>
+<script src="../static/js/head.load.min.js"></script>
+<script src="../static/js/extend.js"></script>
+<script src="../static/js/jquery.min.js"></script>
+<script src="../dist/static/js/util.js?a=12"></script>
+<script src="./js/db.js?a=5"></script>
+<script>
+    var time;
+    (function() {
+        var timer = setInterval(function () {
+            if (typeof Util !== 'undefined' && typeof db !== 'undefined') {
+                clearInterval(timer);
+                db.data.isIos = Util.isIos();
+                time = '?a=' + Math.random();
+                db.data.distDir = '../'
+                head.js([
+                    db.data.distDir + 'static/js/Message.js' + time
+                ],function(){
+                    new Vue({
+                        el: '#index_vue',
+                        created () {
+                            $.ajax({
+                                url:'https://www.jianyuepai.com.cn/wx_cp/api/admin/wx_admin_login.php',
+                                type: 'POST',
+                                data: {password:password,id:location.hash.substr(1,location.hash.length)}, dataType: 'json',
+                                success: (json) => {
+                                    if(json.e !== 0){
+                                        alert('没有权限')
+                                    }else{
+                                        this.get_barbers_detail()
+                                    }
+                                },
+                                error: function (jqXHR, textStatus, errorThrown) {
+                                    alert('没有权限')
+                                }
+                            });
+                        },
+                        compiled () {
+                            this.init()
+                        },
+                        data: {
+                            title_list:[
+                                '头像',
+                                '名称',
+                                '工作地点',
+                                '操作'
+                            ],
+                            sid:20,
+                            barber_list:[],
+                            studio_dict:{},
+                            selected:location.hash.substr(1,location.hash.length),
+                            selected_1: location.hash.substr(1,location.hash.length),
+                            options: [
+                                { text: 'One', value: 'A' },
+                                { text: 'Two', value: 'B' },
+                                { text: 'Three', value: 'C' }
+                            ]
+                        },
+                        methods: {
+                            init(){
+
+                            },
+                            get_barbers_detail(){
+                                let dataStr = `{
+                                    "sid" : "${this.selected}"
+                                }`;
+                                Util.ajax(dataStr, `${db.data.api}get_barber_detail.php`, (json) => {
+                                    if(json.e !== 0){
+                                        Message.toast('无法开始服务');
+                                    }else{
+                                        this.selected_1 = this.selected
+                                        console.log(json.data)
+                                        this.studio_dict = JSON.parse(JSON.stringify(json.data.studio_dict))
+                                        this.barber_list = JSON.parse(JSON.stringify(json.data.barber_list))
+                                        this.options = [];
+                                        Util.inEach(this.studio_dict, (obj,key)=>{
+                                            this.options.push({
+                                                value:key,
+                                                text:obj,
+                                            })
+                                        });
+                                    }
+                                });
+                            }
+                        }
+                    });
+                });
+            }
+        });
+        var password = prompt('密码');
+    }());
+</script>
+<script defer type="text/javascript" src="../static/js/spin.js"></script>
+<script defer src="../static/js/highcharts.js"></script>
+
+<!--https://sp0.baidu.com/8aQDcjqpAAV3otqbppnN2DJv/api.php?resource_id=6845&from_mid=1&&format=json&ie=utf-8&oe=utf-8&query=小说&sort_key=&sort_type=1&stat0=&stat1=&stat2=&stat3=&pn=0&rn=8&cb=jQuery110207948450767373036_1498805422486&_=1498805422505-->
